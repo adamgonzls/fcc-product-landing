@@ -37,19 +37,6 @@ p {
   color: var(--mountain-mist);
 }
 
-section {
-  margin-bottom: calculateMargin(100px);
-  &:last-of-type {
-    margin-bottom: 0;
-  }
-  > div:first-child {
-    margin-bottom: calculateMargin(40px);
-    @include wider-than(800px) {
-      margin-bottom: initial;
-    }
-  }
-}
-
 textarea {
   resize: none;
 }
@@ -64,6 +51,8 @@ select,
 input:not([type=radio]):not([type=checkbox]):not([type=submit]),
 textarea {
   display: block;
+  border-radius: 5px;
+  padding: 5px;
   width: 100%;
   outline: none;
 }
@@ -89,6 +78,10 @@ input[type=checkbox] + label {
   background: var(--cool-blue);
 }
 
+.color-vermillion {
+  color: var(--vermillion);
+}
+
 .vermillion {
   background: var(--vermillion);
 }
@@ -105,82 +98,10 @@ input[type=checkbox] + label {
   margin-bottom: calculateMargin(80px);
 }
 
-.brand-button,
-button,
-button[type=submit],
-input[type=submit] {
-  display: inline-block;
-  border: none;
-  border-radius: 20px;
-  color: var(--brand-white);
-  background: var(--vermillion);
-  padding: 10px 20px;
-  transition: background 0.25s ease;
-  &:hover {
-    color: var(--brand-white);
-    background: var(--pizazz);
-  }
-  &.--weight-600 {
-    font-weight: 600;
-  }
-  &.--cod-text {
-    color: var(--cod);
-  }
-  &.--red-gradient-background {
-    background: linear-gradient(to right, var(--vermillion) 51%, var(--pizazz) 100%);
-    transition: .25s;
-    background-size: 200% auto;
-    &:hover {
-      background-position: right center;
-    }
-  }
-  &.--white-background {
-    background: var(--brand-white);
-    transition: .25s;
-    &:hover {
-      color: var(--brand-white);
-      background: var(--mountain-mist);
-    }
-  }
-  &.--grey-border {
-    border: 1px solid var(--cod);
-  }
-  &.--mountain-mist-border {
-    border: 1px solid var(--mountain-mist);
-  }
-  &+button {
-    margin-left: calculateMargin(10px);
-  }
-}
-
 .page-content-padding-left {
   padding-left: calculateMargin(40px);
   @include wider-than(800px) {
     padding-left: calculateMargin(80px);
-  }
-}
-
-.media-row {
-  @include wider-than(800px) {
-    display: flex;
-    > div {
-      flex: 1;
-    }
-  }
-}
-
-.field-row {
-  > div {
-    margin-bottom: 0;
-    @include wider-than (600px) {
-      display: inline-block;
-      width: calc(50% - 1.5em);
-      margin-right: 1em;
-      &:last-child {
-        width: 50%;
-        margin-right: 0;
-      }
-    }
   }
 }
 
@@ -196,22 +117,6 @@ input[type=submit] {
   @include wider-than(1000px) {
     padding: calculateMargin(80px);
   }
-}
-
-.content-container {
-  margin: 0 auto;
-  width: 100%;
-  max-width: 1200px;
-  background: var(--brand-white);
-  box-shadow: 1px 30px 55px -10px black;
-}
-
-.backgrounds {
-  z-index: -2;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
 }
 
 .top-background, {
@@ -327,7 +232,11 @@ input[type=submit] {
         padding: calculateMargin(85px) calculateMargin(60px) calculateMargin(60px) calculateMargin(70px);
       }
       h1 {
+        @include fontSize(32px);
         margin-bottom: 0;
+        @include wider-than(450px) {
+          @include fontSize(40px);
+        }
       }
       > div {
         position: relative;
@@ -335,7 +244,10 @@ input[type=submit] {
           display: inline-block;
         }
         p {
-          margin-bottom: 0;
+          margin-bottom: calculateMargin(20px);
+          @include wider-than(500px) {
+            
+          }
           @include wider-than(800px) {
             width: 50%;
             width: 60%;
@@ -387,20 +299,21 @@ section {
       display: flex;
       flex-direction: column;
       align-items: center;
+      text-align: center;
       @include wider-than(520px) {
         flex-direction: initial;
       }
-      @include wider-than(800px) {
-        text-align: center;  
-      }
       > div {
         margin: calculateMargin(10px);
-        padding: 45px 35px 35px 35px;
+        padding: 25px 15px 15px 15px;
         height: 150px;
         width: 150px;
         box-shadow: 0px 8px 20px -4px var(--mountain-mist);
+        @include wider-than(500px) {
+
+        }
         @include wider-than(900px) {
-          // padding: 45px 35px 35px 35px;
+          padding: 45px 35px 35px 35px;
           height: 192px;
           width: 192px;
         }
@@ -467,18 +380,35 @@ section {
 }
 
 .sales-section {
+  display: block;
+  position: relative;
   margin-bottom: 0;
   .sales-text {
     margin-top: calculateMargin(20px);
+    padding-top: calculateMargin(15px);
+    width: 40%;
     h1 {
-      margin-bottom: calculateMargin(60px);
+      margin-bottom: calculateMargin(10px);
       width: 90%;
+    }
+    h2 {
+      margin-bottom: calculateMargin(60px);
+      @include fontSize(20px);
+      font-weight: 500;
     }
   }
   #salesRep {
+    height: 375px;
     padding-top: calculateMargin(40px);
     padding-bottom: calculateMargin(40px);
     background: linear-gradient(to right, var(--vermillion), 70%, var(--pizazz));
+    @include wider-than(630px) {
+      position: absolute;
+      top: 0;
+      right: -1px;
+      width: 50%;
+      z-index: 1;
+    }
     .sales-card {
       margin: 0 auto;
       text-align: center;
@@ -507,17 +437,22 @@ section {
   padding-top: calculateMargin(140px);
   padding-bottom: calculateMargin(140px);
   .form-container {
-    margin: 0 auto;
-    width: 50%;
+    text-align: center;
     h1 {
       color: var(--alabaster);
     }
     #form {
+      margin: 0 auto;
+      width: 50%;
       label {
+        text-align: left;
         color: var(--alabaster);
       }
-      #email {
-        // width: 50%;
+      .field-container > div {
+        display: inline-block;
+        &:first-child {
+          margin-right: calculateMargin(5px);
+        }
       }
     }
   }
