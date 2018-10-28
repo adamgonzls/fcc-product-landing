@@ -32,7 +32,7 @@ gulp.task('sass', function() {
     browsers: ['last 2 versions'],
     cascade: false
   }))
-  .pipe(sourcemaps.write())
+  .pipe(sourcemaps.write('./maps'))
   .pipe(gulp.dest('./public'))
   .pipe(browserSync.stream());
 });
